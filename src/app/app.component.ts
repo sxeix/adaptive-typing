@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FlaskService } from './flask.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,20 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'adaptive-typing';
+  response: any;
+
+  constructor(private service: FlaskService) {  }
+
+  ngOnInit() {
+    this.basicGetRequest();
+  }
+
+  basicGetRequest() {
+    this.service.basicRequest().subscribe(i => {this.response = i})
+  }
+
+  buttonClicked() {
+    console.log(this.response);
+  }
+
 }

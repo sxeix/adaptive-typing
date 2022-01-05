@@ -1,0 +1,1 @@
+npm run start & cd ../adaptive-typing-flask && ./run.sh
