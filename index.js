@@ -10,7 +10,8 @@ const {app, BrowserWindow} = require('electron')
         height: 720,
         webPreferences: {
           nodeIntegration: true
-        }
+        },
+        autoHideMenuBar: true
       })
 
       // mainWindow.loadURL(

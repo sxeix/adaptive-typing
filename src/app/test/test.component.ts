@@ -10,7 +10,6 @@ export class TestComponent implements OnInit {
 
   wordset: any;
 
-
   constructor(private service: FlaskService) { }
 
   ngOnInit(): void {
