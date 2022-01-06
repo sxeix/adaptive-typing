@@ -5,18 +5,34 @@
 }
 
 .test-restart-button {
-  /* Can put theme stuff here if needed for the restart button */
+  height: 2.5em;
 }
 
 .test-restart { 
   align-self: flex-end;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.test-input {
+  width: 100%;
+  height: 2em;
+}
+
+.test-inputs {
   padding: 0.5em;
+  display: flex;
+  height: 3em;
+  flex-direction: row;
 }
 
 .test-words {
   width: 100%;
   align-self: center;
   background-color: rgb(82, 82, 82) ;
+}
+
+.round-corners {
   border-radius: 0.5em;
 }
 
