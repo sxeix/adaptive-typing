@@ -15,4 +15,8 @@ export class FlaskService {
     return this.http.get(this.url+'/basic');
   }
 
+  randomWordsetRequest(): Observable<any> {
+    return this.http.get(this.url +"/rand-words")
+  }
+
 }

@@ -1,6 +1,12 @@
 <div class="test-area">
-  <div class="test-word" *ngFor="let word of wordset">
-    {{word}}
+  <div class="test-words">
+    <div class="test-word" *ngFor="let word of wordset">
+      {{word}}
+    </div>
+  </div>
+  <div class="test-restart">
+    <!-- Consider looking into replacing this button with a UI library -->
+    <button class="test-restart-button" (click)="refreshWordset()">Restart</button>
   </div>
 </div>
 

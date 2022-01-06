@@ -17,7 +17,7 @@ export class AppComponent {
   }
 
   basicGetRequest() {
-    this.service.basicRequest().subscribe(i => {this.response = i})
+    this.service.basicRequest().subscribe(i => {this.response = i});
   }
 
   buttonClicked() {

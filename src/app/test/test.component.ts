@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FlaskService } from '../flask.service';
 
 @Component({
   selector: 'app-test',
@@ -7,11 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestComponent implements OnInit {
 
-  wordset = ["this", "is", "a", "test"];
+  wordset: any;
 
-  constructor() { }
+
+  constructor(private service: FlaskService) { }
 
   ngOnInit(): void {
+    this.refreshWordset()
+  }
+
+  refreshWordset() {
+    this.service.randomWordsetRequest().subscribe(i => {this.wordset = Object.values(i)});
+    console.log(this.wordset);
   }
 
 }
