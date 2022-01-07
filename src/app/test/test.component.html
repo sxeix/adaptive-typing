@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="test-inputs">
-    <input type="text" class="test-input" name="" id="">
+    <input type="text" mdInput [(ngModel)]="inputWord" class="test-input" (keydown.Space)="onSpace()">
     <!-- Consider looking into replacing this button with a UI library -->
     <button class="test-restart-button" (click)="refreshWordset()">Restart</button>
   </div>
