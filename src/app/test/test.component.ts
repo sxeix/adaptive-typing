@@ -91,8 +91,38 @@ export class TestComponent implements OnInit {
     this.started = false;
   }
 
-  calculateSpeed() {
-    return 234;
+
+  countCorrectCharacters() {
+    if (this.wordset.length !== this.typedWords.length) {
+      return 0;
+    }
+    var correctCharacters = 0;
+    var totalCharacters = 0;
+    for (var i = 0; i < this.wordset.length; i++) {
+      var expectedWord = this.wordset[i];
+      var typedWord = this.typedWords[i];
+      for (var x = 0; x < expectedWord.length; x++) {
+        totalCharacters++;
+        if (expectedWord[x] === typedWord[x]) {
+          correctCharacters++;
+        }
+      }
+    }
+    return correctCharacters
+  }
+
+  calculateCpm() {
+    const chars = this.countCorrectCharacters()
+    if (chars === 0) return 0;
+    return Math.round(this.countCorrectCharacters()/(this.time/60));
+  }
+
+  calculateWpm() {
+    const chars = this.countCorrectCharacters()
+    if (chars === 0) return 0;
+    // Average words per minute
+    // integer 5 is used to indicate average length of a word
+    return Math.round((this.countCorrectCharacters()/5)/(this.time/60));
   }
 
 }
