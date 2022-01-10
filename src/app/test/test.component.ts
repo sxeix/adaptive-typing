@@ -31,14 +31,21 @@ export class TestComponent implements OnInit {
 
   onSpace() {
     if (this.inputWord[0] === " ") {
+      // This logic is needed to avoid having a space at the start of a string
+      // this happens due to the use of keydown.Space, 
+      // if a space occurs once at the start it is not the user's fault
       this.inputWord = this.inputWord.slice(1);
     }
     this.typedWords.push(this.inputWord);
     this.inputWord = "";
     this.wordIndex++;
     if (this.typedWords.length === this.wordset.length) {
-      // This is where we are going to trigger a post request in the flaskservice
-      console.log('test completed');
+      // console.log('test completed');
+      this.service.postTestResult(this.typedWords, this.wordset).subscribe(
+        response => { 
+          console.log(response); 
+        }
+      );
     }
   }
 
