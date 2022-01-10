@@ -1,6 +1,11 @@
 <div class="test-area">
   <div class="test-words round-corners">
-    <div class="test-word" *ngFor="let word of wordset">
+    <div 
+    class="test-word" 
+    *ngFor="let word of wordset; let i = index" 
+    attr.id="{{i}}"
+    [style.color]="getColour(i)"
+    >
       {{word}}
     </div>
   </div>
