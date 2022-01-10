@@ -1,3 +1,4 @@
+<div class="test-stats">time elapsed: {{time}} | wpm: {{calculateSpeed()}}</div>
 <div class="test-area">
   <div class="test-words round-corners">
     <div 
@@ -10,7 +11,7 @@
     </div>
   </div>
   <div class="test-inputs">
-    <input type="text" mdInput [(ngModel)]="inputWord" class="test-input" (keydown.Space)="onSpace()">
+    <input type="text" mdInput [(ngModel)]="inputWord" class="test-input" (keydown.Space)="onSpace()" (keydown)="onKey()">
     <!-- Consider looking into replacing this button with a UI library -->
     <button class="test-restart-button" (click)="refreshWordset()">Restart</button>
   </div>

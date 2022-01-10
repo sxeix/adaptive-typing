@@ -44,3 +44,7 @@
   flex-direction: column;
   border-radius: 0.5em;
 }
+
+.test-stats {
+  color: white;
+}

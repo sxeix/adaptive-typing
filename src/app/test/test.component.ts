@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { interval, timer } from 'rxjs';
 import { FlaskService } from '../flask.service';
 
 @Component({
@@ -12,6 +13,10 @@ export class TestComponent implements OnInit {
   wordIndex = 0;
   inputWord = "";
   typedWords: string[] = [];
+
+  timer: any;
+  time = 0;
+  started = false;
 
   constructor(private service: FlaskService) { }
 
@@ -40,12 +45,19 @@ export class TestComponent implements OnInit {
     this.inputWord = "";
     this.wordIndex++;
     if (this.typedWords.length === this.wordset.length) {
-      // console.log('test completed');
+      console.log('test completed');
+      this.stopTimer();
       this.service.postTestResult(this.typedWords, this.wordset).subscribe(
         response => { 
           console.log(response); 
         }
       );
+    }
+  }
+
+  onKey() {
+    if (!this.started && this.wordIndex === 0) {
+      this.startTimer();
     }
   }
 
@@ -63,4 +75,23 @@ export class TestComponent implements OnInit {
     }
     return 'white';
   }
+
+  startTimer() {
+    this.timer = setInterval(() => {
+      this.time++;
+    }, 1000);
+    this.started = true;
+    this.time = 0;
+  }
+
+  stopTimer() {
+    clearInterval(this.timer);
+    console.log(this.time);
+    this.started = false;
+  }
+
+  calculateSpeed() {
+    return 234;
+  }
+
 }
