@@ -26,17 +26,20 @@ export class TestComponent implements OnInit {
     this.wordIndex = 0;
     console.log(this.wordset);
     this.typedWords = [];
+    this.inputWord = "";
   }
 
   onSpace() {
     if (this.inputWord[0] === " ") {
       this.inputWord = this.inputWord.slice(1);
     }
-    // console.log("+" + this.inputWord + "+");
     this.typedWords.push(this.inputWord);
     this.inputWord = "";
-    // console.log(this.wordIndex);
     this.wordIndex++;
+    if (this.typedWords.length === this.wordset.length) {
+      // This is where we are going to trigger a post request in the flaskservice
+      console.log('test completed');
+    }
   }
 
   getColour(currentIndex: number): string {
