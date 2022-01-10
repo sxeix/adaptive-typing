@@ -32,6 +32,7 @@ export class TestComponent implements OnInit {
     console.log(this.wordset);
     this.typedWords = [];
     this.inputWord = "";
+    this.stopTimer();
   }
 
   onSpace() {
