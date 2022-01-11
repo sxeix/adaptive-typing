@@ -9,7 +9,7 @@ import { FlaskService } from '../flask.service';
 })
 export class TestComponent implements OnInit {
 
-  wordset: any;
+  wordset: string[] = [];
   wordIndex = 0;
   inputWord = "";
   typedWords: string[] = [];
