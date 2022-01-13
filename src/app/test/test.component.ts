@@ -26,9 +26,6 @@ export class TestComponent implements OnInit {
   }
 
   refreshWordset() {
-    // this.service.randomWordsetRequest().subscribe(i => {
-    //   this.wordset = Object.values(i);
-    // });
     this.service.tailoredWordsetRequest().subscribe(i => {
       this.wordset = Object.values(i["words"]);
       this.focusSet = i["focus_set"];
@@ -104,12 +101,10 @@ export class TestComponent implements OnInit {
       return 0;
     }
     var correctCharacters = 0;
-    var totalCharacters = 0;
     for (var i = 0; i < this.wordset.length; i++) {
       var expectedWord = this.wordset[i];
       var typedWord = this.typedWords[i];
       for (var x = 0; x < expectedWord.length; x++) {
-        totalCharacters++;
         if (expectedWord[x] === typedWord[x]) {
           correctCharacters++;
         }
