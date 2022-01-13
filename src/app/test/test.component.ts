@@ -134,8 +134,10 @@ export class TestComponent implements OnInit {
 
   formatFocusSet() {
     let formattedFocusSet = []
-    for (var i = 0; i<this.focusSet.length; i++) {
-      formattedFocusSet.push(" " + this.focusSet[i][0] + this.focusSet[i][1]);
+    if (this.focusSet) {
+      for (var i = 0; i<this.focusSet.length; i++) {
+        formattedFocusSet.push(" " + this.focusSet[i][0] + this.focusSet[i][1]);
+      }
     }
     return formattedFocusSet;
   }
