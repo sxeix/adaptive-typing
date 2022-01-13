@@ -19,6 +19,10 @@ export class FlaskService {
     return this.http.get(this.url +"/rand-words");
   }
 
+  tailoredWordsetRequest(): Observable<any> {
+    return this.http.get(this.url +"/tailored-wordset");
+  }
+
   postTestResult(typed: string[], actual: string[]): Observable<any> {
     const content = {"typed": typed, "actual": actual};
     return this.http.post(this.url+"/test-result", content);

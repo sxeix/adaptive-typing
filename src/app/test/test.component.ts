@@ -13,6 +13,7 @@ export class TestComponent implements OnInit {
   wordIndex = 0;
   inputWord = "";
   typedWords: string[] = [];
+  focusSet = [];
 
   timer: any;
   time = 0;
@@ -25,9 +26,13 @@ export class TestComponent implements OnInit {
   }
 
   refreshWordset() {
-    this.service.randomWordsetRequest().subscribe(i => {
-      this.wordset = Object.values(i);
-    });
+    // this.service.randomWordsetRequest().subscribe(i => {
+    //   this.wordset = Object.values(i);
+    // });
+    this.service.tailoredWordsetRequest().subscribe(i => {
+      this.wordset = Object.values(i["words"]);
+      this.focusSet = i["focus_set"];
+    })
     this.wordIndex = 0;
     console.log(this.wordset);
     this.typedWords = [];
