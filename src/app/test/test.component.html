@@ -1,5 +1,8 @@
 <div class="test-stats">time elapsed: {{time}} | cpm: {{calculateCpm()}} | wpm: {{calculateWpm()}}</div>
 <div class="test-area">
+  <div class="current-focus">
+    focus-set: {{formatFocusSet()}}
+  </div>
   <div class="test-words round-corners">
     <div 
     class="test-word" 
@@ -15,8 +18,5 @@
     <!-- Consider looking into replacing this button with a UI library -->
     <button class="test-restart-button" (click)="refreshWordset()">Restart</button>
   </div>
-</div>
-<div class="current-focus">
-  Focus set: {{focusSet}}
 </div>
 

@@ -50,8 +50,9 @@
 }
 
 .current-focus {
-  display:flex;
-  margin: auto;
+  /* display:flex;
+  margin: auto; */
+  padding: 0.5em;
   color: white;
-  width: 65%;
+  /* width: 65%; */
 }

@@ -33,6 +33,8 @@ export class TestComponent implements OnInit {
       this.wordset = Object.values(i["words"]);
       this.focusSet = i["focus_set"];
     })
+    console.log("FOCUSSET");
+    console.log(this.focusSet);
     this.wordIndex = 0;
     console.log(this.wordset);
     this.typedWords = [];
@@ -130,4 +132,11 @@ export class TestComponent implements OnInit {
     return Math.round((this.countCorrectCharacters()/5)/(this.time/60));
   }
 
+  formatFocusSet() {
+    let formattedFocusSet = []
+    for (var i = 0; i<this.focusSet.length; i++) {
+      formattedFocusSet.push(" " + this.focusSet[i][0] + this.focusSet[i][1]);
+    }
+    return formattedFocusSet;
+  }
 }
