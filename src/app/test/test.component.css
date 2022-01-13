@@ -48,3 +48,10 @@
 .test-stats {
   color: white;
 }
+
+.current-focus {
+  display:flex;
+  margin: auto;
+  color: white;
+  width: 65%;
+}
