@@ -1,22 +1,17 @@
 <div class="test-stats">time elapsed: {{time}} | cpm: {{calculateCpm()}} | wpm: {{calculateWpm()}}</div>
 <div class="test-area">
-  <div class="current-focus">
-    focus-set: {{formatFocusSet()}}
-  </div>
-  <div class="test-words round-corners">
-    <div 
-    class="test-word" 
-    *ngFor="let word of wordset; let i = index" 
-    attr.id="{{i}}"
-    [style.color]="getColour(i)"
-    >
-      {{word}}
+    <div class="current-focus">
+        focus-set: {{formatFocusSet()}}
     </div>
-  </div>
-  <div class="test-inputs">
-    <input type="text" mdInput [(ngModel)]="inputWord" class="test-input" (keydown.Space)="onSpace()" (keydown)="onKey()">
-    <!-- Consider looking into replacing this button with a UI library -->
-    <button class="test-restart-button" (click)="refreshWordset()">Restart</button>
-  </div>
+    <div class="test-words round-corners">
+        <div class="test-word" *ngFor="let word of wordset; let i = index" attr.id="{{i}}" [style.color]="getColour(i)">
+            {{word}}
+        </div>
+    </div>
+    <div class="test-inputs">
+        <input type="text" mdInput [(ngModel)]="inputWord" class="test-input" (keydown.Space)="onSpace()"
+            (keydown)="onKey()">
+        <!-- Consider looking into replacing this button with a UI library -->
+        <button class="test-restart-button" (click)="refreshWordset()">Restart</button>
+    </div>
 </div>
-
