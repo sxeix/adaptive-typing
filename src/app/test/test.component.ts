@@ -13,6 +13,7 @@ export class TestComponent implements OnInit {
   wordIndex = 0;
   inputWord = "";
   typedWords: string[] = [];
+  focusSet = [];
 
   timer: any;
   time = 0;
@@ -25,9 +26,12 @@ export class TestComponent implements OnInit {
   }
 
   refreshWordset() {
-    this.service.randomWordsetRequest().subscribe(i => {
-      this.wordset = Object.values(i);
-    });
+    this.service.tailoredWordsetRequest().subscribe(i => {
+      this.wordset = Object.values(i["words"]);
+      this.focusSet = i["focus_set"];
+    })
+    console.log("FOCUSSET");
+    console.log(this.focusSet);
     this.wordIndex = 0;
     console.log(this.wordset);
     this.typedWords = [];
@@ -97,12 +101,10 @@ export class TestComponent implements OnInit {
       return 0;
     }
     var correctCharacters = 0;
-    var totalCharacters = 0;
     for (var i = 0; i < this.wordset.length; i++) {
       var expectedWord = this.wordset[i];
       var typedWord = this.typedWords[i];
       for (var x = 0; x < expectedWord.length; x++) {
-        totalCharacters++;
         if (expectedWord[x] === typedWord[x]) {
           correctCharacters++;
         }
@@ -125,4 +127,13 @@ export class TestComponent implements OnInit {
     return Math.round((this.countCorrectCharacters()/5)/(this.time/60));
   }
 
+  formatFocusSet() {
+    let formattedFocusSet = []
+    if (this.focusSet) {
+      for (var i = 0; i<this.focusSet.length; i++) {
+        formattedFocusSet.push(" " + this.focusSet[i][0] + this.focusSet[i][1]);
+      }
+    }
+    return formattedFocusSet;
+  }
 }

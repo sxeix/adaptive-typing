@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -17,6 +17,10 @@ export class FlaskService {
 
   randomWordsetRequest(): Observable<any> {
     return this.http.get(this.url +"/rand-words");
+  }
+
+  tailoredWordsetRequest(): Observable<any> {
+    return this.http.get(this.url +"/tailored-wordset");
   }
 
   postTestResult(typed: string[], actual: string[]): Observable<any> {
