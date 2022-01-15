@@ -4,12 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { KeyboardComponent } from './keyboard/keyboard.component';
 import { TestComponent } from './test/test.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        TestComponent
+        TestComponent,
+        KeyboardComponent
     ],
     imports: [
         BrowserModule,
