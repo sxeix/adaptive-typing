@@ -23,8 +23,8 @@ export class FlaskService {
         return this.http.get(this.url + "/tailored-wordset");
     }
 
-    postTestResult(typed: string[], actual: string[]): Observable<any> {
-        const content = { "typed": typed, "actual": actual };
+    postTestResult(typed: string[], actual: string[], user: string): Observable<any> {
+        const content = { "typed": typed, "actual": actual, "user": user };
         return this.http.post(this.url + "/test-result", content);
     }
 

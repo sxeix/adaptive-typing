@@ -1,4 +1,14 @@
 <div class="test-stats">time elapsed: {{time}} | cpm: {{calculateCpm()}} | wpm: {{calculateWpm()}}</div>
+<div class="user-controls">
+    <select name="currentUser" [(ngModel)]="currentUser">
+        <option *ngFor="let user of users" [value]="user">{{user}}</option>
+    </select>
+    <button class="create-account-button" (click)="toggleCreateAccount($event.target)">Create New Account</button>
+    <div *ngIf="displayCreateOptions">
+        <input type="text" mdInput [(ngModel)]="newUserName"/>
+        <button class="create-account-button" (click)="createAccount()">Create</button>
+    </div>
+</div>
 <div class="test-area">
     <div class="current-focus">
         focus-set: {{formatFocusSet()}}

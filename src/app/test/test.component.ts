@@ -21,15 +21,37 @@ export class TestComponent implements OnInit {
 
     kbd: Keyboard;
 
+    currentUser: string = "user";
+    users: string[] = ["user", "user1", "user2"];
+    displayCreateOptions = false;
+    newUserName = "";
+
     constructor(private service: FlaskService) { }
 
     ngOnInit(): void {
         this.refreshWordset();
+        this.loadUsers();
         this.kbd = new Keyboard();
         this.kbd.setOptions({
             physicalKeyboardHighlight: true,
             physicalKeyboardHighlightPress: true
         });
+    }
+
+    createAccount() {
+        console.log('making account under username ' + this.newUserName);
+        this.users.push(this.newUserName);
+        this.currentUser = this.newUserName;
+    }
+
+    toggleCreateAccount(element) {
+        this.displayCreateOptions = !this.displayCreateOptions;
+        element.textContent = this.displayCreateOptions ? "Cancel" : "Create New Account"
+    }
+
+    loadUsers() {
+        // Code here to load the users that are already available
+        console.log('Loading users');
     }
 
     refreshWordset() {
@@ -59,7 +81,7 @@ export class TestComponent implements OnInit {
         if (this.typedWords.length === this.wordset.length) {
             console.log('test completed');
             this.stopTimer();
-            this.service.postTestResult(this.typedWords, this.wordset).subscribe(
+            this.service.postTestResult(this.typedWords, this.wordset, this.currentUser).subscribe(
                 response => {
                     console.log(response);
                 }
