@@ -21,7 +21,7 @@ export class TestComponent implements OnInit {
 
     kbd: Keyboard;
 
-    currentUser: string = "user";
+    currentUser: string = "DEFAULT";
     users: string[] = ["user", "user1", "user2", "testuser"];
     displayCreateOptions = false;
     newUserName = "";
@@ -59,13 +59,15 @@ export class TestComponent implements OnInit {
         console.log('making account under username ' + this.newUserName);
         this.users.push(this.newUserName);
         this.currentUser = this.newUserName;
-        this.toggleCreateAccount({});
+        this.newUserName = "";
     }
 
     toggleCreateAccount(element) {
         this.displayCreateOptions = !this.displayCreateOptions;
-        element.textContent = this.displayCreateOptions ? "Cancel" : "Create New Account"
+        element.textContent = this.displayCreateOptions ? "Hide create account" : "Create New Account";
+        this.newUserName = "";
     }
+
 
     loadUsers() {
         // Code here to load the users that are already available
@@ -77,7 +79,6 @@ export class TestComponent implements OnInit {
             this.wordset = Object.values(i["words"]);
             this.focusSet = i["focus_set"];
         })
-        console.log("FOCUSSET");
         console.log(this.focusSet);
         this.wordIndex = 0;
         console.log(this.wordset);
