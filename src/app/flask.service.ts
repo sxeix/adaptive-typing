@@ -19,9 +19,9 @@ export class FlaskService {
         return this.http.get(this.url + "/rand-words");
     }
 
-    // tailoredWordsetRequest(): Observable<any> {
-    //     return this.http.get(this.url + "/tailored-wordset");
-    // }
+    getUsers(): Observable<any> {
+        return this.http.get(this.url + "/get-users");
+    }
 
     tailoredWordsetRequest(user: string): Observable<any> {
         const content = { "user":user };

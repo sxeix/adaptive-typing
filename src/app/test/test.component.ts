@@ -36,6 +36,12 @@ export class TestComponent implements OnInit {
             physicalKeyboardHighlight: true,
             physicalKeyboardHighlightPress: true
         });
+        this.service.getUsers().subscribe(
+            response => {
+                this.users = response['users'];
+                this.currentUser = this.users[0];
+            }
+        )
     }
 
     changeUser() { 
