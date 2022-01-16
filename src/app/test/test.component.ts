@@ -22,7 +22,7 @@ export class TestComponent implements OnInit {
     kbd: Keyboard;
 
     currentUser: string = "user";
-    users: string[] = ["user", "user1", "user2"];
+    users: string[] = ["user", "user1", "user2", "testuser"];
     displayCreateOptions = false;
     newUserName = "";
 
@@ -38,10 +38,22 @@ export class TestComponent implements OnInit {
         });
     }
 
+    changeUser() { 
+        this.service.changeUser(this.currentUser).subscribe(
+            response => {
+                console.log(response);
+                if (response['status']) {
+                    this.refreshWordset()
+                }
+            }
+        );
+    }
+
     createAccount() {
         console.log('making account under username ' + this.newUserName);
         this.users.push(this.newUserName);
         this.currentUser = this.newUserName;
+        this.toggleCreateAccount({});
     }
 
     toggleCreateAccount(element) {
@@ -55,7 +67,7 @@ export class TestComponent implements OnInit {
     }
 
     refreshWordset() {
-        this.service.tailoredWordsetRequest().subscribe(i => {
+        this.service.tailoredWordsetRequest(this.currentUser).subscribe(i => {
             this.wordset = Object.values(i["words"]);
             this.focusSet = i["focus_set"];
         })
