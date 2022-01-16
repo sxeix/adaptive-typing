@@ -56,3 +56,12 @@
     color: white;
     /* width: 65%; */
 }
+
+.keyboard {
+    margin: auto;
+    width: 65%;
+}
+
+.simple-keyboard {
+    max-width: 850px;
+}

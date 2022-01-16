@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { interval, timer } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { FlaskService } from '../flask.service';
+import Keyboard from 'simple-keyboard';
 
 @Component({
     selector: 'app-test',
@@ -19,10 +19,17 @@ export class TestComponent implements OnInit {
     time = 0;
     started = false;
 
+    kbd: Keyboard;
+
     constructor(private service: FlaskService) { }
 
     ngOnInit(): void {
-        this.refreshWordset()
+        this.refreshWordset();
+        this.kbd = new Keyboard();
+        this.kbd.setOptions({
+            physicalKeyboardHighlight: true,
+            physicalKeyboardHighlightPress: true
+        });
     }
 
     refreshWordset() {
