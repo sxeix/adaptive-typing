@@ -10,9 +10,12 @@
     </div>
     <div class="test-inputs">
         <input type="text" mdInput [(ngModel)]="inputWord" class="test-input" (keydown.Space)="onSpace()"
-            (keydown)="onKey()">
+            (keydown)="onKey()" (input)="onInputChange($event)">
         <!-- Consider looking into replacing this button with a UI library -->
         <button class="test-restart-button" (click)="refreshWordset()">Restart</button>
     </div>
 </div>
-<app-keyboard></app-keyboard>
+<div class="keyboard">
+    <div class="simple-keyboard"></div>
+</div>
+<!-- <app-keyboard></app-keyboard> -->

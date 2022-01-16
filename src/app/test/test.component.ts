@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { interval, timer } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { FlaskService } from '../flask.service';
-
+import Keyboard from "simple-keyboard";
 @Component({
     selector: 'app-test',
     templateUrl: './test.component.html',
@@ -19,11 +18,51 @@ export class TestComponent implements OnInit {
     time = 0;
     started = false;
 
+    keyboard: Keyboard;
+
     constructor(private service: FlaskService) { }
 
     ngOnInit(): void {
         this.refreshWordset()
     }
+
+    ngAfterViewInit() {
+        this.keyboard = new Keyboard({
+          onChange: input => this.onChange(input),
+          onKeyPress: button => this.onKeyPress(button)
+        });
+        this.keyboard.setOptions({
+            physicalKeyboardHighlightPress: true,
+            physicalKeyboardHighlight: true
+        })
+      }
+    
+      onChange = (input: string) => {
+        // this.inputWord = input;
+        console.log("Input changed", input);
+      };
+    
+      onKeyPress = (button: string) => {
+        console.log("Button pressed", button);    
+        /**
+         * If you want to handle the shift and caps lock buttons
+         */
+        if (button === "{shift}" || button === "{lock}") this.handleShift();
+      };
+    
+      onInputChange = (event: any) => {
+        this.keyboard.setInput(event.target.value);
+      };
+    
+      handleShift = () => {
+        let currentLayout = this.keyboard.options.layoutName;
+        let shiftToggle = currentLayout === "default" ? "shift" : "default";
+    
+        this.keyboard.setOptions({
+          layoutName: shiftToggle
+        });
+      };
+
 
     refreshWordset() {
         this.service.tailoredWordsetRequest().subscribe(i => {
@@ -64,6 +103,7 @@ export class TestComponent implements OnInit {
         if (!this.started && this.wordIndex === 0) {
             this.startTimer();
         }
+        // console.log(this.keyboard.getButtonElement(this.inputWord[this.inputWord.length-1]));
     }
 
     getColour(currentIndex: number): string {
