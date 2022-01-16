@@ -69,7 +69,7 @@ export class TestComponent implements OnInit {
 
     toggleCreateAccount(element) {
         this.displayCreateOptions = !this.displayCreateOptions;
-        element.textContent = this.displayCreateOptions ? "Hide create account" : "Create New Account";
+        element.textContent = this.displayCreateOptions ? "Hide Create Account" : "Create New Account";
         this.newUserName = "";
     }
 
