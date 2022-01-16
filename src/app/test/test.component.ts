@@ -30,18 +30,23 @@ export class TestComponent implements OnInit {
 
     ngOnInit(): void {
         this.refreshWordset();
-        this.loadUsers();
         this.kbd = new Keyboard();
         this.kbd.setOptions({
             physicalKeyboardHighlight: true,
             physicalKeyboardHighlightPress: true
         });
+        this.loadUsers()
+    }
+    
+    loadUsers() {
         this.service.getUsers().subscribe(
             response => {
+                console.log('here');
+                console.log(response['users']);
                 this.users = response['users'];
                 this.currentUser = this.users[0];
             }
-        )
+        );
     }
 
     changeUser() { 
@@ -68,11 +73,6 @@ export class TestComponent implements OnInit {
         this.newUserName = "";
     }
 
-
-    loadUsers() {
-        // Code here to load the users that are already available
-        console.log('Loading users');
-    }
 
     refreshWordset() {
         this.service.tailoredWordsetRequest(this.currentUser).subscribe(i => {

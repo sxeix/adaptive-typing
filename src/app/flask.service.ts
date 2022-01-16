@@ -20,6 +20,7 @@ export class FlaskService {
     }
 
     getUsers(): Observable<any> {
+        console.log('request to be made');
         return this.http.get(this.url + "/get-users");
     }
 
