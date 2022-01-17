@@ -65,3 +65,7 @@
 .simple-keyboard {
     max-width: 850px;
 }
+
+.top-panel, .test-stats, .user-controls {
+    padding: 0.5em;
+}

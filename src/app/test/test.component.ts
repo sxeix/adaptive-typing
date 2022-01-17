@@ -34,7 +34,7 @@ export class TestComponent implements OnInit {
             physicalKeyboardHighlight: true,
             physicalKeyboardHighlightPress: true
         });
-        this.loadUsers()
+        this.loadUsers();
     }
     
     loadUsers() {
@@ -51,7 +51,7 @@ export class TestComponent implements OnInit {
         this.service.changeUser(this.currentUser).subscribe(
             response => {
                 if (response['status']) {
-                    this.refreshWordset()
+                    this.refreshWordset();
                 }
             }
         );
