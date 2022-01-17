@@ -3,9 +3,11 @@
     <select *ngIf="users.length != 0" [(ngModel)]="currentUser" (change)="changeUser()">
         <option *ngFor="let user of users" [value]="user">{{user}}</option>
     </select>
-    <button class="create-account-button" (click)="toggleCreateAccount($event.target)">Create New Account</button>
+    <button *ngIf="!displayCreateOptions" class="create-account-button" (click)="toggleCreateAccount()">Create New
+        Account</button>
+    <button *ngIf="displayCreateOptions" class="create-account-button" (click)="toggleCreateAccount()">Cancel</button>
     <div *ngIf="displayCreateOptions">
-        <input type="text" mdInput [(ngModel)]="newUserName"/>
+        <input type="text" mdInput [(ngModel)]="newUserName" />
         <button class="create-account-button" (click)="createAccount()">Create</button>
     </div>
 </div>
@@ -15,7 +17,8 @@
             focus-set: {{formatFocusSet()}}
         </div>
         <div class="test-words round-corners">
-            <div class="test-word" *ngFor="let word of wordset; let i = index" attr.id="{{i}}" [style.color]="getColour(i)">
+            <div class="test-word" *ngFor="let word of wordset; let i = index" attr.id="{{i}}"
+                [style.color]="getColour(i)">
                 {{word}}
             </div>
         </div>

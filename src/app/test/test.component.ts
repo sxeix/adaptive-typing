@@ -42,7 +42,6 @@ export class TestComponent implements OnInit {
             response => {
                 this.users = response['users'];
                 this.currentUser = this.users[0];
-                console.log(this.currentUser);
                 this.refreshWordset();
             }
             );
@@ -63,11 +62,11 @@ export class TestComponent implements OnInit {
         this.users.push(this.newUserName);
         this.currentUser = this.newUserName;
         this.newUserName = "";
+        this.toggleCreateAccount();
     }
 
-    toggleCreateAccount(element) {
+    toggleCreateAccount() {
         this.displayCreateOptions = !this.displayCreateOptions;
-        element.textContent = this.displayCreateOptions ? "Hide Create Account" : "Create New Account";
         this.newUserName = "";
     }
 
@@ -77,7 +76,6 @@ export class TestComponent implements OnInit {
             this.wordset = Object.values(i["words"]);
             this.focusSet = i["focus_set"];
         })
-        console.log(this.wordset);
         this.wordIndex = 0;
         this.typedWords = [];
         this.inputWord = "";
@@ -136,7 +134,6 @@ export class TestComponent implements OnInit {
 
     stopTimer() {
         clearInterval(this.timer);
-        console.log(this.time);
         this.started = false;
     }
 
