@@ -19,13 +19,24 @@ export class FlaskService {
         return this.http.get(this.url + "/rand-words");
     }
 
-    tailoredWordsetRequest(): Observable<any> {
-        return this.http.get(this.url + "/tailored-wordset");
+    getUsers(): Observable<any> {
+        console.log('request to be made');
+        return this.http.get(this.url + "/get-users");
     }
 
-    postTestResult(typed: string[], actual: string[]): Observable<any> {
-        const content = { "typed": typed, "actual": actual };
+    tailoredWordsetRequest(user: string): Observable<any> {
+        const content = { "user":user };
+        return this.http.post(this.url + "/tailored-wordset", content);
+    }
+
+    postTestResult(typed: string[], actual: string[], user: string): Observable<any> {
+        const content = { "typed": typed, "actual": actual, "user":user};
         return this.http.post(this.url + "/test-result", content);
+    }
+
+    changeUser(user: string): Observable<any> {
+        const content = { "user": user };
+        return this.http.post(this.url + "/change-user", content);
     }
 
 }

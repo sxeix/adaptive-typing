@@ -21,26 +21,62 @@ export class TestComponent implements OnInit {
 
     kbd: Keyboard;
 
+    currentUser: string = "DEFAULT";
+    users: string[] = ["user", "user1", "user2", "testuser"];
+    displayCreateOptions = false;
+    newUserName = "";
+
     constructor(private service: FlaskService) { }
 
     ngOnInit(): void {
-        this.refreshWordset();
         this.kbd = new Keyboard();
         this.kbd.setOptions({
             physicalKeyboardHighlight: true,
             physicalKeyboardHighlightPress: true
         });
+        this.loadUsers();
+    }
+    
+    loadUsers() {
+        this.service.getUsers().subscribe(
+            response => {
+                this.users = response['users'];
+                this.currentUser = this.users[0];
+                this.refreshWordset();
+            }
+            );
+        }
+
+    changeUser() { 
+        this.service.changeUser(this.currentUser).subscribe(
+            response => {
+                if (response['status']) {
+                    this.refreshWordset();
+                }
+            }
+        );
     }
 
+    createAccount() {
+        console.log('making account under username ' + this.newUserName);
+        this.users.push(this.newUserName);
+        this.currentUser = this.newUserName;
+        this.newUserName = "";
+        this.toggleCreateAccount();
+    }
+
+    toggleCreateAccount() {
+        this.displayCreateOptions = !this.displayCreateOptions;
+        this.newUserName = "";
+    }
+
+
     refreshWordset() {
-        this.service.tailoredWordsetRequest().subscribe(i => {
+        this.service.tailoredWordsetRequest(this.currentUser).subscribe(i => {
             this.wordset = Object.values(i["words"]);
             this.focusSet = i["focus_set"];
         })
-        console.log("FOCUSSET");
-        console.log(this.focusSet);
         this.wordIndex = 0;
-        console.log(this.wordset);
         this.typedWords = [];
         this.inputWord = "";
         this.stopTimer();
@@ -59,7 +95,7 @@ export class TestComponent implements OnInit {
         if (this.typedWords.length === this.wordset.length) {
             console.log('test completed');
             this.stopTimer();
-            this.service.postTestResult(this.typedWords, this.wordset).subscribe(
+            this.service.postTestResult(this.typedWords, this.wordset, this.currentUser).subscribe(
                 response => {
                     console.log(response);
                 }
@@ -98,7 +134,6 @@ export class TestComponent implements OnInit {
 
     stopTimer() {
         clearInterval(this.timer);
-        console.log(this.time);
         this.started = false;
     }
 
