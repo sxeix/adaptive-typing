@@ -29,7 +29,6 @@ export class TestComponent implements OnInit {
     constructor(private service: FlaskService) { }
 
     ngOnInit(): void {
-        this.refreshWordset();
         this.kbd = new Keyboard();
         this.kbd.setOptions({
             physicalKeyboardHighlight: true,
@@ -41,18 +40,17 @@ export class TestComponent implements OnInit {
     loadUsers() {
         this.service.getUsers().subscribe(
             response => {
-                console.log('here');
-                console.log(response['users']);
                 this.users = response['users'];
                 this.currentUser = this.users[0];
+                console.log(this.currentUser);
+                this.refreshWordset();
             }
-        );
-    }
+            );
+        }
 
     changeUser() { 
         this.service.changeUser(this.currentUser).subscribe(
             response => {
-                console.log(response);
                 if (response['status']) {
                     this.refreshWordset()
                 }
@@ -79,9 +77,8 @@ export class TestComponent implements OnInit {
             this.wordset = Object.values(i["words"]);
             this.focusSet = i["focus_set"];
         })
-        console.log(this.focusSet);
-        this.wordIndex = 0;
         console.log(this.wordset);
+        this.wordIndex = 0;
         this.typedWords = [];
         this.inputWord = "";
         this.stopTimer();
