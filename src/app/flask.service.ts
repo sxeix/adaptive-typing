@@ -20,7 +20,6 @@ export class FlaskService {
     }
 
     getUsers(): Observable<any> {
-        console.log('request to be made');
         return this.http.get(this.url + "/get-users");
     }
 
@@ -29,8 +28,8 @@ export class FlaskService {
         return this.http.post(this.url + "/tailored-wordset", content);
     }
 
-    postTestResult(typed: string[], actual: string[], user: string): Observable<any> {
-        const content = { "typed": typed, "actual": actual, "user":user};
+    postTestResult(typed: string[], actual: string[], user: string, testStats: Object): Observable<any> {
+        const content = { "typed": typed, "actual": actual, "user":user, "stats":testStats};
         return this.http.post(this.url + "/test-result", content);
     }
 
