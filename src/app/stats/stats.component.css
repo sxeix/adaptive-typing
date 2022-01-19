@@ -1,0 +1,11 @@
+.statistics, .user, .basic-stat {
+    color: white;
+}
+
+.statistics {
+    padding: 0.5em;
+}
+
+.user {
+    font-size: 30px;
+}
