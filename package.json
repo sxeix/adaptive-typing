@@ -26,6 +26,8 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "angular-highcharts": "^13.0.1",
+    "highcharts": "^9.3.2",
     "rxjs": "~6.6.0",
     "simple-keyboard": "^3.4.29",
     "tslib": "^2.3.0",

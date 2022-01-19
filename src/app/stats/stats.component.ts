@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FlaskService } from '../flask.service';
+import { Chart } from 'angular-highcharts';
+import * as Highcharts from 'highcharts';
 
 @Component({
     selector: 'app-stats',
@@ -14,19 +16,102 @@ export class StatsComponent implements OnInit {
 
     averageWpmString = '';
     averageCpmString = '';
-    
-    constructor(private service: FlaskService) { }
 
+    wpmChart = new Chart({
+        chart: {
+          type: 'line',
+          height: '350px'
+        },
+        title: {
+          text: 'Words Per Minute (WPM) over time'
+        },
+        credits: {
+          enabled: false
+        },
+        series: [
+          {
+            name: "current user's wpm",
+            type: 'line'
+          }
+        ],
+        xAxis: {
+            type: 'datetime',
+            dateTimeLabelFormats: {
+                day: '%a %d %b %H:%M:%S'
+            },
+            ordinal: true
+        },
+        yAxis: {
+            title:{
+                text: 'WPM'
+            }
+        }
+      });
+
+      cpmChart = new Chart({
+        chart: {
+          type: 'line',
+          height: '350px'
+        },
+        title: {
+          text: 'Characters Per Minute (CPM) over time'
+        },
+        credits: {
+          enabled: false
+        },
+        series: [
+          {
+            name: "current user's cpm",
+            type: 'line'
+          }
+        ],
+        xAxis: {
+            type: 'datetime',
+            dateTimeLabelFormats: {
+                day: '%a %d %b %H:%M:%S'
+            },
+            ordinal: true
+        },
+        yAxis: {
+            title:{
+                text: 'CPM'
+            }
+        }
+      });
+      
+    constructor(private service: FlaskService) { }
+    
     ngOnInit(): void {
         this.getStatistics();
+    }
+
+    plotWpmPoint() {
+        console.log(this.userStatistics);
+        const statsLength = this.userStatistics.length;
+        for(var i = 0; i < statsLength; i++) {
+            var currentStat = this.userStatistics[i];
+            var date = Date.parse(currentStat['time']);
+            this.wpmChart.addPoint([date, currentStat['wpm']]);
+        }
+    }
+
+    plotCpmPoint() {
+        console.log(this.userStatistics);
+        const statsLength = this.userStatistics.length;
+        for(var i = 0; i < statsLength; i++) {
+            var currentStat = this.userStatistics[i];
+            var date = Date.parse(currentStat['time']);
+            this.cpmChart.addPoint([date, currentStat['cpm']]);
+        }
     }
 
     getStatistics() {
         if (this.user !== '') {
             this.service.getUserStats(this.user).subscribe(response => {
-                console.log(response);
                 this.userStatistics = response['stats'];
                 this.averageStats();
+                this.plotWpmPoint();
+                this.plotCpmPoint();
             })
         }
     }
@@ -35,7 +120,6 @@ export class StatsComponent implements OnInit {
         let averageWpm = 0;
         let averageCpm = 0;
         this.userStatistics.forEach(element => {
-            console.log(element['wpm']);
             averageWpm = averageWpm + element['wpm'];
             averageCpm = averageCpm + element['cpm'];
         });
