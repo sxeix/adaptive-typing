@@ -63,6 +63,7 @@ export class TestComponent implements OnInit {
         this.currentUser = this.newUserName;
         this.newUserName = "";
         this.toggleCreateAccount();
+        this.refreshWordset();
     }
 
     toggleCreateAccount() {
