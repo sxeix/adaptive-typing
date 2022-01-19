@@ -44,7 +44,51 @@ export class StatsComponent implements OnInit {
         yAxis: {
             title:{
                 text: 'WPM'
-            }
+            },
+            plotBands: [
+                {
+                    from: 0,
+                    to: 20,
+                    color: 'rgba(245, 167, 66, 0.1)',
+                    label : { text: 'Newbie' }
+                },
+                {
+                    from: 20,
+                    to: 40,
+                    color: 'rgba(0,0,0,0)',
+                    label : { text: 'Beginner' }
+                },
+                {
+                    from: 40,
+                    to: 60,
+                    color: 'rgba(245, 167, 66, 0.1)',
+                    label : { text: 'Intermediate' }
+                },
+                {
+                    from: 60,
+                    to: 80,
+                    color: 'rgba(0,0,0,0)',
+                    label : { text: 'Proficient' }
+                },
+                {
+                    from: 80,
+                    to: 100,
+                    color: 'rgba(245, 167, 66, 0.1)',
+                    label : { text: 'Skilled' }
+                },
+                {
+                    from: 100,
+                    to: 120,
+                    color: 'rgba(0,0,0,0)',
+                    label : { text: 'Experienced' }
+                },
+                {
+                    from: 120,
+                    to: 200,
+                    color: 'rgba(245, 167, 66, 0.1)',
+                    label : { text: 'Expert' }
+                },
+            ]
         }
       });
 
