@@ -16,6 +16,7 @@ export class StatsComponent implements OnInit {
 
     averageWpmString = '';
     averageCpmString = '';
+    userCurrentSkill = '';
 
     wpmChart = new Chart({
         chart: {
@@ -167,11 +168,32 @@ export class StatsComponent implements OnInit {
             averageWpm = averageWpm + element['wpm'];
             averageCpm = averageCpm + element['cpm'];
         });
-        averageWpm = averageWpm / this.userStatistics.length;
-        this.averageWpmString =  'Average wpm: ' + Math.round(averageWpm);
+        averageWpm = Math.round(averageWpm / this.userStatistics.length);
+        this.averageWpmString =  'Average wpm: ' + averageWpm;
 
-        averageCpm = averageCpm / this.userStatistics.length;
-        this.averageCpmString =  'Average cpm: ' + Math.round(averageCpm);
+        averageCpm = Math.round(averageCpm / this.userStatistics.length);
+        this.averageCpmString =  'Average cpm: ' + averageCpm;
+        var skillLevel = '';
+        if (averageWpm === 0) {
+            return;
+        }
+        if (averageWpm < 20) {
+            console.log(averageWpm);
+            skillLevel = 'Newbie';
+        } else if (averageWpm < 40) {
+            skillLevel = 'Beginner';
+        } else if (averageWpm < 60) {
+            skillLevel = 'Intermediate';
+        } else if (averageWpm < 80) {
+            skillLevel = 'Proficient';
+        } else if (averageWpm < 100) {
+            skillLevel = 'Skilled';
+        } else if (averageWpm < 120) {
+            skillLevel = 'Experienced';
+        } else if (averageWpm < 200) {
+            skillLevel = 'Expert';
+        }
+        this.userCurrentSkill = 'Skill level: ' + skillLevel;
     }
 
 }
