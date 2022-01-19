@@ -63,6 +63,7 @@ export class TestComponent implements OnInit {
         this.currentUser = this.newUserName;
         this.newUserName = "";
         this.toggleCreateAccount();
+        this.refreshWordset();
     }
 
     toggleCreateAccount() {
@@ -95,12 +96,24 @@ export class TestComponent implements OnInit {
         if (this.typedWords.length === this.wordset.length) {
             console.log('test completed');
             this.stopTimer();
-            this.service.postTestResult(this.typedWords, this.wordset, this.currentUser).subscribe(
+            this.service.postTestResult(this.typedWords, this.wordset, this.currentUser, this.getTestStats()).subscribe(
                 response => {
                     console.log(response);
                 }
             );
         }
+    }
+
+    getTestStats(): Object {
+        const currentTime = Date();
+        var formattedTime = currentTime.toLocaleLowerCase('en-gb');
+        const stats = {
+            'time': formattedTime,
+            'wpm': this.calculateWpm(),
+            'cpm': this.calculateCpm(),
+            'focus-set': this.focusSet
+        }
+        return stats;
     }
 
     onKey() {
