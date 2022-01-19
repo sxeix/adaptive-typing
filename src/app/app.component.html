@@ -1,2 +1,3 @@
-<!-- <button (click)="buttonClicked()">see basic request response</button> -->
-<app-test></app-test>
+<button (click)="statsToggle()">View Stats</button>
+<app-stats *ngIf="displayStats" [user]="currentUser"></app-stats>
+<app-test *ngIf="!displayStats" (userOutput)="changeUser($event)" [startingUser]="currentUser"></app-test>

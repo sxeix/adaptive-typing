@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FlaskService } from '../flask.service';
 import Keyboard from 'simple-keyboard';
 
@@ -22,6 +22,8 @@ export class TestComponent implements OnInit {
     kbd: Keyboard;
 
     currentUser: string = "DEFAULT";
+    @Input() startingUser = ''; 
+    @Output() userOutput = new EventEmitter<string>();
     users: string[] = ["user", "user1", "user2", "testuser"];
     displayCreateOptions = false;
     newUserName = "";
@@ -42,10 +44,14 @@ export class TestComponent implements OnInit {
             response => {
                 this.users = response['users'];
                 this.currentUser = this.users[0];
+                if (this.startingUser !== '') {
+                    this.currentUser = this.startingUser;
+                }
                 this.refreshWordset();
+                this.userOutput.emit(this.currentUser);
             }
-            );
-        }
+        );
+    }
 
     changeUser() { 
         this.service.changeUser(this.currentUser).subscribe(
@@ -55,6 +61,7 @@ export class TestComponent implements OnInit {
                 }
             }
         );
+        this.userOutput.emit(this.currentUser);
     }
 
     createAccount() {
@@ -70,7 +77,6 @@ export class TestComponent implements OnInit {
         this.displayCreateOptions = !this.displayCreateOptions;
         this.newUserName = "";
     }
-
 
     refreshWordset() {
         this.service.tailoredWordsetRequest(this.currentUser).subscribe(i => {

@@ -37,5 +37,10 @@ export class FlaskService {
         const content = { "user": user };
         return this.http.post(this.url + "/change-user", content);
     }
+    
+    getUserStats(user: string): Observable<any> {
+        const content = { "user":user };
+        return this.http.post(this.url + "/get-user-stats", content);
+    }
 
 }
