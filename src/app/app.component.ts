@@ -7,6 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent {
     title = 'adaptive-typing';
-
+    displayStats = false;
+    currentUser = '';
     constructor() { }
+
+    statsToggle() {
+        this.displayStats = !this.displayStats;
+    }
+
+    changeUser(user) {
+        this.currentUser = user;
+    }
 }

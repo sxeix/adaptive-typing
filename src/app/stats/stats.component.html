@@ -1,0 +1,20 @@
+<div class="statistics">
+    <div class="user">
+        Username: {{user}}
+    </div>
+    <div class="basic-stat">
+        {{averageWpmString}}
+    </div>
+    <div class="basic-stat">
+        {{averageCpmString}}
+    </div>
+    <div class="basic-stat">
+        {{userCurrentSkill}}
+    </div>
+</div>
+<div class="chart-display">
+    <div [chart]="wpmChart"></div>
+</div>
+<div class="chart-display">
+    <div [chart]="cpmChart"></div>
+</div>
