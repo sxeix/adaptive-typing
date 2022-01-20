@@ -131,7 +131,6 @@ export class StatsComponent implements OnInit {
     }
 
     plotWpmPoint() {
-        console.log(this.userStatistics);
         const statsLength = this.userStatistics.length;
         for(var i = 0; i < statsLength; i++) {
             var currentStat = this.userStatistics[i];
@@ -141,7 +140,6 @@ export class StatsComponent implements OnInit {
     }
 
     plotCpmPoint() {
-        console.log(this.userStatistics);
         const statsLength = this.userStatistics.length;
         for(var i = 0; i < statsLength; i++) {
             var currentStat = this.userStatistics[i];
@@ -164,6 +162,9 @@ export class StatsComponent implements OnInit {
     averageStats() {
         let averageWpm = 0;
         let averageCpm = 0;
+        if (this.userStatistics.length === undefined) {
+            return;
+        }
         this.userStatistics.forEach(element => {
             averageWpm = averageWpm + element['wpm'];
             averageCpm = averageCpm + element['cpm'];
@@ -178,7 +179,6 @@ export class StatsComponent implements OnInit {
             return;
         }
         if (averageWpm < 20) {
-            console.log(averageWpm);
             skillLevel = 'Newbie';
         } else if (averageWpm < 40) {
             skillLevel = 'Beginner';
