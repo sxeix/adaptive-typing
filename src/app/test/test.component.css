@@ -24,6 +24,7 @@
     display: flex;
     height: 3em;
     flex-direction: row;
+    padding-top: 1.3em;
 }
 
 .test-words {
@@ -39,11 +40,12 @@
 .test-area {
     display: flex;
     margin: auto;
-    margin-top: 10em;
+    margin-top: 10em;;
     width: 65%;
     flex-direction: column;
     border-radius: 0.5em;
 }
+
 
 .test-stats {
     color: white;
@@ -73,10 +75,6 @@ input[type='number']{
 .keyboard {
     margin: auto;
     width: 65%;
-}
-
-.simple-keyboard {
-    max-width: 850px;
 }
 
 .top-panel, .test-stats, .user-controls {
