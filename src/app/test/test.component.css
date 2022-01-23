@@ -50,11 +50,24 @@
 }
 
 .current-focus {
-    /* display:flex;
-  margin: auto; */
     padding: 0.5em;
     color: white;
-    /* width: 65%; */
+    width: auto;
+}
+
+.test-length {
+    padding: 0.5em;
+    color: white;
+}
+
+input[type='number']{
+    width: 4em;
+} 
+
+.test-control {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .keyboard {
