@@ -81,9 +81,7 @@ export class TestComponent implements OnInit {
     }
 
     refreshWordset() {
-        console.log("length: " + this.wordCount);
-        // Need to pass the length of the wordset here to be able to send it to the flask app
-        this.service.tailoredWordsetRequest(this.currentUser).subscribe(i => {
+        this.service.tailoredWordsetRequest(this.currentUser, this.wordCount).subscribe(i => {
             this.wordset = Object.values(i["words"]);
             this.focusSet = i["focus_set"];
         })
