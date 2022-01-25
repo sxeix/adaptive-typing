@@ -40,12 +40,11 @@
 .test-area {
     display: flex;
     margin: auto;
-    margin-top: 10em;;
+    margin-top: 10em;
     width: 65%;
     flex-direction: column;
     border-radius: 0.5em;
 }
-
 
 .test-stats {
     color: white;
@@ -62,9 +61,9 @@
     color: white;
 }
 
-input[type='number']{
+input[type='number'] {
     width: 4em;
-} 
+}
 
 .test-control {
     width: 100%;
