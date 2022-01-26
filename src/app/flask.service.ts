@@ -23,8 +23,8 @@ export class FlaskService {
         return this.http.get(this.url + "/get-users");
     }
 
-    tailoredWordsetRequest(user: string): Observable<any> {
-        const content = { "user":user };
+    tailoredWordsetRequest(user: string, length: number): Observable<any> {
+        const content = { "user":user, "length":length };
         return this.http.post(this.url + "/tailored-wordset", content);
     }
 

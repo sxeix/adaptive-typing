@@ -15,8 +15,14 @@
 </div>
 <div class="test-area">
     <div *ngIf="users.length !== 0">
-        <div class="current-focus">
-            focus-set: {{formatFocusSet()}}
+        <div class="test-control">
+            <div class="current-focus">
+                focus-set: {{formatFocusSet()}}
+            </div>
+            <div class="test-length">
+                word-count: 
+                <input [(ngModel)]="wordCount" class="test-length-input" type="number" name="test-length" id="test-length" size="1">
+            </div>
         </div>
         <div class="test-words round-corners">
             <div class="test-word" *ngFor="let word of wordset; let i = index" attr.id="{{i}}"

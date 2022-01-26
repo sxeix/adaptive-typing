@@ -27,6 +27,7 @@ export class TestComponent implements OnInit {
     users: string[] = ["user", "user1", "user2", "testuser"];
     displayCreateOptions = false;
     newUserName = "";
+    wordCount = 30;
 
     constructor(private service: FlaskService) { }
 
@@ -80,7 +81,7 @@ export class TestComponent implements OnInit {
     }
 
     refreshWordset() {
-        this.service.tailoredWordsetRequest(this.currentUser).subscribe(i => {
+        this.service.tailoredWordsetRequest(this.currentUser, this.wordCount).subscribe(i => {
             this.wordset = Object.values(i["words"]);
             this.focusSet = i["focus_set"];
         })
@@ -156,7 +157,6 @@ export class TestComponent implements OnInit {
         clearInterval(this.timer);
         this.started = false;
     }
-
 
     countCorrectCharacters() {
         if (this.wordset.length !== this.typedWords.length) {
