@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
 import { StatsComponent } from './stats/stats.component';
 import { ChartModule } from 'angular-highcharts';
+import { InfoComponent } from './info/info.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         TestComponent,
-        StatsComponent
+        StatsComponent,
+        InfoComponent
     ],
     imports: [
         BrowserModule,

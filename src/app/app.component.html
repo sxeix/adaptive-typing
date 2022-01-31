@@ -1,3 +1,5 @@
-<button (click)="statsToggle()">View Stats</button>
-<app-stats *ngIf="displayStats" [user]="currentUser"></app-stats>
-<app-test *ngIf="!displayStats" (userOutput)="changeUser($event)" [startingUser]="currentUser"></app-test>
+<button (click)="pageToggle(1)">View Stats</button>
+<button (click)="pageToggle(2)">View Information</button>
+<app-test *ngIf="currentDisplayPageNum === 0" (userOutput)="changeUser($event)" [startingUser]="currentUser"></app-test>
+<app-stats *ngIf="currentDisplayPageNum === 1" [user]="currentUser"></app-stats>
+<app-info *ngIf="currentDisplayPageNum === 2"></app-info>
