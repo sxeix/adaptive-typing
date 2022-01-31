@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FlaskService } from '../flask.service';
 import { Chart } from 'angular-highcharts';
-import * as Highcharts from 'highcharts';
 
 @Component({
     selector: 'app-stats',

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-root',
@@ -6,13 +6,19 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
     title = 'adaptive-typing';
-    displayStats = false;
     currentUser = '';
+    currentDisplayPageNum = 0;
+
     constructor() { }
 
-    statsToggle() {
-        this.displayStats = !this.displayStats;
+    pageToggle(page: number) {
+        if (this.currentDisplayPageNum === page) {
+            this.currentDisplayPageNum = 0;
+        } else {
+            this.currentDisplayPageNum = page;
+        }
     }
 
     changeUser(user) {
