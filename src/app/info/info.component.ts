@@ -10,6 +10,7 @@ export class InfoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+      console.log('Info page has been created');
   }
 
 }

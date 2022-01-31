@@ -1,0 +1,21 @@
+.information {
+    color: white;
+    padding: 0.5em;
+}
+
+.title {
+    font-size: 30px;
+    margin: 0%;
+    padding: 0%;
+    text-decoration: underline;
+}
+
+h3 {
+    font-size: 25px;
+    text-decoration: underline;
+}
+
+p {
+    padding-bottom: 0.5em;
+    font-size: 14px;
+}
