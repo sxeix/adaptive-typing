@@ -136,7 +136,7 @@ export class TestComponent implements OnInit {
         if (intendedWord === actualWord) {
             return 'green';
         } else if (actualWord === undefined && currentIndex === this.typedWords.length) {
-            return 'grey';
+            return '#ffb300';
         } else if (actualWord === undefined) {
             return 'white'
         } else if (intendedWord !== actualWord) {
