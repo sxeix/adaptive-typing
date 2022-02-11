@@ -1,12 +1,14 @@
 <div class="top-panel">
     <div class="test-stats">time elapsed: {{time}} | cpm: {{calculateCpm()}} | wpm: {{calculateWpm()}}</div>
     <div class="user-controls">
-        <select class="options" *ngIf="users.length !== 0" [(ngModel)]="currentUser" (change)="changeUser()">
+        <select class="options" *ngIf="users.length !== 0" [(ngModel)]="currentUser" label="change-user"
+            title="change-user" (change)="changeUser()">
             <option *ngFor="let user of users" [value]="user">{{user}}</option>
         </select>
         <button *ngIf="!displayCreateOptions" class="create-account-button" (click)="toggleCreateAccount()">Create New
             Account</button>
-        <button *ngIf="displayCreateOptions" class="create-account-button" (click)="toggleCreateAccount()">Cancel</button>
+        <button *ngIf="displayCreateOptions" class="create-account-button"
+            (click)="toggleCreateAccount()">Cancel</button>
         <div *ngIf="displayCreateOptions">
             <input type="text" mdInput [(ngModel)]="newUserName" />
             <button class="create-account-button" (click)="createAccount()">Create</button>
@@ -20,8 +22,9 @@
                 focus-set: {{formatFocusSet()}}
             </div>
             <div class="test-length">
-                word-count: 
-                <input [(ngModel)]="wordCount" class="test-length-input" type="number" name="test-length" id="test-length" size="1">
+                word-count:
+                <input [(ngModel)]="wordCount" label="word-count" title="word-count-input" placeholder="count"
+                    class="test-length-input" type="number" name="test-length" id="test-length" size="1">
             </div>
         </div>
         <div class="test-words round-corners">
@@ -32,8 +35,8 @@
         </div>
     </div>
     <div class="test-inputs">
-        <input type="text" mdInput [(ngModel)]="inputWord" class="test-input" (keydown.Space)="onSpace()"
-            (keydown)="onKey()">
+        <input placeholder="Type here..." title="typing-area-input" type="text" mdInput [(ngModel)]="inputWord"
+            class="test-input" label="typing-area-input" (keydown.Space)="onSpace()" (keydown)="onKey()">
         <!-- Consider looking into replacing this button with a UI library -->
         <button class="test-restart-button" (click)="refreshWordset()">Restart</button>
     </div>
