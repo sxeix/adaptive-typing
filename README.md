@@ -1,8 +1,12 @@
 # AdaptiveTyping
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.3.
+This project is the front end of the adaptive-typing application. It utilises both angular and electron to create a local application that functions in tandem the [adaptive-typing-flask service](https://github.com/sxeix/adaptive-typing-flask) which uses Markov models to analyse a user's typing errors and provide appropriate wordsets for practice.
+
+## The future
+Currently in the process of migrating the angular aspect of this project out of electron and away from flask to become a standalone web-application with proper account support and a functional database. 
 
 ## Development server
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.3.
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
